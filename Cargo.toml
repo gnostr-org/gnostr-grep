@@ -1,0 +1,21 @@
+[package]
+name = "gnostr-grep"
+description = "grep a file"
+version = "0.0.0"
+edition = "2021"
+repository = "https://github.com/gnostr-org/gnostr-grep"
+license-file = "LICENSE"
+readme = "README.md"
+keywords = ["nostr", "gnostr", "git", "grep"]
+
+[[bin]]
+name = "gnostr-grep"
+path = "src/main.rs"
+
+[dependencies]
+#rust-crypto = "0.2.36"
+#git2        = "0.9.1"
+time = "0.1.42"
+chrono = "0"
+io = "0.0.2"
+use = "0.0.0"
