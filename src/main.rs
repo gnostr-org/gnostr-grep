@@ -15,7 +15,7 @@ use std::path::PathBuf;
 
 
 //lib.rs
-use gnostr_command::Config;
+use gnostr_grep::Config;
 
 //main.rs functions
 fn get_epoch_ms() -> u128 {
@@ -90,7 +90,7 @@ println!("Searching in {}", dirname);
 println!("Searching for {}", config.query);
 println!("In file {}", config.file_path);
 
-if let Err(e) = gnostr_command::run(config) {
+if let Err(e) = gnostr_grep::run(config) {
     println!("Application error: {e}");
     process::exit(1);
 }
