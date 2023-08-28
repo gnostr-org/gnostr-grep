@@ -86,9 +86,9 @@ let config = Config::build(&args).unwrap_or_else(|_err| {
     process::exit(1);
 });
 
-println!("Searching in {}", dirname);
-println!("Searching for {}", config.query);
-println!("In file {}", config.file_path);
+//println!("Searching in {}", dirname);
+//println!("Searching for {}", config.query);
+//println!("In file {}", config.file_path);
 
 if let Err(e) = gnostr_grep::run(config) {
     println!("Application error: {e}");
