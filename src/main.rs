@@ -68,7 +68,7 @@ let _datetime: DateTime<Utc> = _system_time.into();
         println!("cwd={:#?}", cwd);
 
 let args: Vec<String> = env::args().collect();
-let dirname = &args[0];
+let _dirname = &args[0];
 
 if cfg!(debug_assertions) {
     #[cfg(debug_assertions)]
