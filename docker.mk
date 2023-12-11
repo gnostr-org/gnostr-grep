@@ -1,23 +1,21 @@
-docker:## 	docker commands
-#                          docker                    docker
-	@awk 'BEGIN {FS = ":.*?######	"} /^[a-zA-Z_-]+:.*?######	/ {printf "\033[36m%-15s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)
+## detect ARCH for buildx
+ARCH                                   :=$(shell uname -m)
+export ARCH
+ifeq ($(ARCH),x86_64)
+TARGET                                 :=amd64
+export TARGET
+endif
+ifeq ($(ARCH),arm64)
+TARGET                                 :=arm64
+export TARGET
+endif
 
-.ONESHELL:
-docker-start:######	detect whether docker is running...
-	@( \
-	    while ! docker system info > /dev/null 2>&1; do\
-	    echo 'Waiting for docker to start...';\
-	    if [[ '$(OS)' == 'Linux' ]]; then\
-	     systemctl restart docker.service;\
-	    fi;\
-	    if [[ '$(OS)' == 'Darwin' ]]; then\
-	     open --background -a /./Applications/Docker.app/Contents/MacOS/Docker;\
-	    fi;\
-	sleep 1;\
-	done\
-	)
-docker-pull:docker-start######	pull alpine image
-	docker pull alpine
+DOCKER=$(shell which docker)
+export DOCKER
+PWD=$(shell echo `pwd`)
+export PWD
 
-# vim: set noexpandtab:
-# vim: set setfiletype make
+default:
+	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?##/ {printf "\033[36m%-15s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)
+-include Makefile
+
